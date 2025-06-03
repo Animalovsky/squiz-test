@@ -1,0 +1,56 @@
+.card-wrapper {
+  .card-content {
+    .card-text {
+      &:last-child {
+        margin-left: auto;
+      }
+    }
+
+    p {
+      margin-bottom: 0 !important;
+    }
+
+    @media (max-width: 575.98px) {
+      display: block;
+    }
+
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+
+  .card-title {
+    @media (max-width: 575.98px) {
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 575.98px) {
+    p.card-text {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    padding: 10px;
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.8s ease forwards;
+  border-bottom: 1px solid $color-light-grey;
+  padding: 15px;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

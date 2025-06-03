@@ -1,0 +1,41 @@
+button {
+  border: unset;
+  padding: 10px;
+  text-transform: uppercase;
+  font-weight: 500;
+  width: 100%;
+  transition: ease-in 0.3s all;
+  background: $color-white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    background: $color-indigo;
+    color: $color-white;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: 14px;
+  }
+}
+
+.button-primary {
+  background: unset;
+  box-shadow: unset;
+  color: black;
+
+  &:hover {
+    color: $color-indigo !important;
+    background: unset;
+  }
+}
+
+#loadMoreBtn,
+#end-message {
+  margin: 20px 0;
+  text-align: center;
+}

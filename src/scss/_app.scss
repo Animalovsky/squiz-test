@@ -1,0 +1,22 @@
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  background: $color-light-grey;
+}
+
+.app-wrapper {
+  height: 100vh;
+
+  @media (min-width: 991.98px) {
+    padding: 50px 0;
+  }
+}
+
+[class^="col-"] {
+  transition: all 0.4s ease-out;
+}
+
+[class^="container"] {
+  transition: all 0.4s ease-out;
+}
