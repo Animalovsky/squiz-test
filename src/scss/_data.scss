@@ -1,14 +1,48 @@
-#data-container {
-  @media (max-width: 575.98px) {
-    padding-top: 10px;
+#data-table {
+  tr td,
+  tr th {
+    padding: $padding_small;
+
+    @media (min-width: 991.98px) {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeSlideIn 0.8s ease forwards;
+    }
+  }
+
+  thead th {
+    background-color: $color-light-blue;
+    padding: $padding_small;
   }
 
   .no-results {
     margin-bottom: 0;
-    padding-left: 15px;
     padding-bottom: 15px;
+    padding-left: 0;
+    margin: $margin_medium 0;
   }
 
-  padding-top: 15px;
-  background: $color-white;
+  #data-container {
+    @media (max-width: 575.98px) {
+      padding-top: $padding_medium;
+    }
+
+    &:has(.no-results) {
+      background: transparent !important;
+    }
+
+    padding-top: 15px;
+    background: $color-white;
+  }
+
+  @media (max-width: 991.98px) {
+    padding-bottom: $margin_medium;
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: 12px;
+  }
+
+  width: 100%;
+  font-size: $text_small;
 }

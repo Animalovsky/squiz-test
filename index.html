@@ -1,120 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Squizz Technical Test</title>
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Squizz Technical Test</title>
 
-    <!-- Bootstrap assets -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-      crossorigin="anonymous"
-    ></script>
+      <!-- Bootstrap assets -->
+      <link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+         crossorigin="anonymous"
+         />
+      <script
+         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+         crossorigin="anonymous"
+         ></script>
 
-    <!-- App assets -->
-    <link rel="stylesheet" href="dist/css/style.css" />
-    <script type="module" src="src/js/main.js"></script>
-    <script src="src/js/modal.js"></script>
+      <!-- App assets -->
+      <link rel="stylesheet" href="dist/css/style.css" />
+      <script type="module" src="src/js/main.js"></script>
 
-    <!-- Google assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+      <!-- Google assets -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+         rel="stylesheet"
+         />
 
-    <!-- Chart assets -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <section class="app-wrapper min-vh-100">
-      <div id="myModal" class="modal" style="display: none">
-        <div class="modal-content">
-          <span id="closeModalBtn" class="close">&times;</span>
+      <!-- Chart assets -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-          <div
-            id="industries-graph"
-            class="modal-content-block"
-            style="display: none"
-          >
-            <h3>Employees per Industry</h3>
-            <canvas id="industryChart"></canvas>
-          </div>
+      <!-- Font Awesome -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   </head>
+   <body>
+      <section class="app-wrapper min-vh-100">
+         <div class="container-fluid">
+            <div class="row">
+               <!-- Filter Bar section -->
+               <div class="col-lg-5 col-xl-3 col-12 filters-wrapper sticky-filters">
+                  <div class="filters-header filters">
+                     <p>Filters 
+                        <i class="fa-thin fa-sort-down"></i>
+                     </p>
+                  </div>
+                  <div id="filters">
+                     <select id="industry-filter">
+                        <option value="">All Industries</option>
+                     </select>
+                     <select id="country-filter">
+                        <option value="">All Countries</option>
+                     </select>
+                     <select id="sort-filter">
+                        <option value="">Sort By</option>
+                        <option value="name-asc">Name A–Z</option>
+                        <option value="name-desc">Name Z–A</option>
+                        <option value="employees-asc">Employees ↑</option>
+                        <option value="employees-desc">Employees ↓</option>
+                     </select>
+                     <input
+                              type="text"
+                              id="search-input"
+                              placeholder="Search by name..."
+                              />
+                  </div>
+               </div>
 
-          <div
-            id="countries-chart"
-            class="modal-content-block"
-            style="display: none"
-          >
-            <h3>Employees per Country</h3>
-            <canvas id="countryChart" width="450"></canvas>
-          </div>
-        </div>
-      </div>
+               <!-- Data Section -->
+               <div class="col-lg-7 col-xl-9 col-12 filters-wrapper">
+                  <div id="error-message" style="color: #ef4444"></div>
+                  <div class="filters-header sticky-header company-data">
+                     <p>Company data</p>
+                  </div>
+                  <table id="data-table" class="data-table">
+                     <thead>
+                        <tr>
+                           <th>Company</th>
+                           <th>Country</th>
+                           <th>Industry</th>
+                           <th>
+                              <span class="d-block d-sm-none">EEs</span>
+                              <span class="d-sm-block d-none">Employees</span>
+                           </th>
+                        </tr>
+                     </thead>
+                     <tbody id="data-container">
+                        <!-- Dynamic data go here -->
+                     </tbody>
+                  </table>
+                  <button id="loadMoreBtn" class="button button-primary">
+                        Load More
+                        </button>
+                  <div id="end-message">That's all the results.</div>
+               </div>
 
-      <div class="container">
-        <div class="row">
-          <!-- Filter Bar -->
-          <div class="col-lg-5 col-xl-4 col-12 filters-wrapper">
-            <div class="filters-header">
-              <p>Filters</p>
+               <!-- Charts section -->
+               <div class="offset-xxl-3 col-xxl-9 col-12 filters-wrapper">
+                  <div class="filters-header sticky-header statistical-charts">
+                     <p>Statistical charts</p>
+                  </div>
+
+                  <div id="graphs">
+                     <div id="industries-chart"class="modal-content-block">
+                        <div class="filters-header sub-header">
+                           <p>Employees per Industry</p>
+                        </div>
+                        <canvas id="industryChart"></canvas>
+                     </div>
+
+                     <div id="countries-chart" class="modal-content-block">
+                        <div class="filters-header sub-header">
+                           <p>Employees per Country</p>
+                        </div>
+                        <canvas id="countryChart"></canvas>
+                     </div>
+                  </div>
+
+               </div>
             </div>
-
-            <div id="filters">
-              <select id="industry-filter">
-                <option value="">All Industries</option>
-              </select>
-
-              <select id="country-filter">
-                <option value="">All Countries</option>
-              </select>
-
-              <select id="sort-filter">
-                <option value="">Sort By</option>
-                <option value="name-asc">Name A–Z</option>
-                <option value="name-desc">Name Z–A</option>
-                <option value="employees-asc">Employees ↑</option>
-                <option value="employees-desc">Employees ↓</option>
-              </select>
-
-              <input
-                type="text"
-                id="search-input"
-                placeholder="Search by name..."
-              />
-            </div>
-
-            <div id="graphs">
-              <div class="filters-header">
-                <p>Statistical charts</p>
-              </div>
-              <button class="openModalBtn" data-content="industries-graph">
-                Employees bar graph
-              </button>
-              <button class="openModalBtn" data-content="countries-chart">
-                Country pie chart
-              </button>
-            </div>
-          </div>
-
-          <div class="col-lg-7 col-xl-8 col-12">
-            <div id="error-message" style="color: #ef4444"></div>
-            <div id="data-container"></div>
-            <button id="loadMoreBtn" class="button button-primary">
-              Load More
-            </button>
-            <div id="end-message">That's all the results.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
+         </div>
+      </section>
+   </body>
 </html>

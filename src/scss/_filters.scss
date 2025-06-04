@@ -2,13 +2,14 @@
   #filters {
     select,
     input {
-      padding: 10px;
       border: none;
       outline: none;
       cursor: pointer;
       text-transform: uppercase;
       font-weight: 500;
       letter-spacing: 0.25px;
+      font-size: $text_small;
+      padding: $padding_small;
     }
 
     @media (max-width: 991.98px) {
@@ -34,51 +35,114 @@
     margin-bottom: 50px;
   }
 
-  #graphs {
-    @media (max-width: 991.98px) {
-      .filters-header {
-        flex: 0 0 100%;
-      }
-
-      .openModalBtn {
-        flex: 0 0 calc(50% - 5px);
-        margin: 0;
-        font-size: 14px;
-      }
-
-      gap: 0 10px;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 767.98px) {
-      display: none;
-    }
-  }
-
   .filters-header,
   .charts-header {
     p {
       margin-bottom: 0;
     }
 
+    font-size: $text_regular;
+
+    &.statistical-charts {
+      p {
+        padding-left: $padding_medium*2;
+      }
+
+      &:before {
+        content: "\f201";
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        font-size: 14px;
+        font-weight: 900;
+        font-family: $font-awesome;
+      }
+
+      position: relative;
+    }
+
+    &.company-data {
+      p {
+        padding-left: $padding_medium*2;
+      }
+
+      &:before {
+        content: "\f0db";
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        font-size: 14px;
+        font-weight: 900;
+        font-family: $font-awesome;
+      }
+
+       position: relative;
+    }
+
+    &.filters {
+      p {
+        padding-left: $padding_medium*2;
+      }
+      
+      &:before {
+        content: "\f885";
+        position: absolute;
+        top: 5px;
+        width: 20px;
+        font-size: 14px;
+        font-weight: 900;
+        font-family: $font-awesome;
+      }
+
+      position: relative;
+    }
+
+    &.sub-header {
+      background: $color-light-blue;
+      color: black;
+      font-weight: 700;
+      font-size: $text_small;
+      padding: $padding_small;
+    }
+
+    &.sticky-header {
+      position: sticky;
+      top: 0;
+      border-top: 15px solid #f9fafb;
+
+      @media (max-width: 991.98px) {
+        top: 170px;
+      }
+    }
+
     background: $color-indigo;
     color: $color-white;
-    padding: 5px 10px;
+    padding: $padding_small $padding_medium;
     margin-bottom: 10px;
+  }
+
+  &.sticky-filters {
+    position: sticky;
+    top: 15px;
+
+    @media (max-width: 991.98px) {
+      position: fixed;
+      top: 0;
+      z-index: 1;
+      padding-top: 15px;
+      background: $color-light-grey;
+    }
   }
 
   @media (max-width: 991.98px) {
     position: relative;
-    top: 20px;
-    margin-bottom: 40px;
-  }
+    top: 170px;
+    margin-bottom: 10px;
 
-  @media (max-width: 767.98px) {
-    margin-bottom: 20px;
+    #loadMoreBtn[style*="display: block"] {
+        margin-bottom: -10px;
+    }
   }
 
   max-height: fit-content;
-  position: sticky;
-  top: 50px;
 }

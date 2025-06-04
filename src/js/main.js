@@ -18,10 +18,6 @@ fetch("https://dujour.squiz.cloud/developer-challenge/data")
     populateFilters(data);
     restorePreferences();
     applyFiltersAndSort();
-
-    // Charts functions
-    drawIndustryChart(data);
-    drawCountryChart(data);
   })
   .catch((error) => {
     showError("Error loading data. Please try again later.");
@@ -56,19 +52,16 @@ function displayData(data, reset = false) {
     return;
   }
 
-  // For each loop to create cards based on the given data
+  // For each loop to create table elements based on the given data
   nextItems.forEach((item) => {
-    const card = document.createElement("div");
-    card.className = "card-wrapper";
-    card.innerHTML = `
-    <h4 class="card-title">${item.name}</h4>
-    <p class="card-text"><strong>Country:</strong> ${item.country}</p>
-      <div class="card-content">
-        <p class="card-text"><strong>Industry:</strong> ${item.industry}</p>
-        <p class="card-text"><strong>Employees:</strong> ${item.numberOfEmployees}</p>
-      </div>
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.name}</td>
+      <td>${item.country}</td>
+      <td>${item.industry}</td>
+      <td>${item.numberOfEmployees}</td>
     `;
-    container.appendChild(card);
+    container.appendChild(row);
   });
 
   currentDisplayIndex += itemsPerPage;
@@ -89,10 +82,6 @@ function displayData(data, reset = false) {
       endMessage.style.display = "block";
     }
   });
-
-  if (container.lastElementChild) {
-    container.lastElementChild.scrollIntoView({ behavior: "smooth" });
-  }
 }
 
 // Function to create filters
@@ -154,6 +143,11 @@ function applyFiltersAndSort() {
   }
 
   currentFilteredData = filtered;
+
+  // Redraw charts with filtered data
+  drawIndustryChart(currentFilteredData);
+  drawCountryChart(currentFilteredData);
+
   displayData(currentFilteredData, true);
 }
 
@@ -171,11 +165,16 @@ function savePreferences() {
 // Restoring user preferences after browser refresh
 function restorePreferences() {
   const saved = JSON.parse(localStorage.getItem("userFilters"));
+  const sortFilter = document.getElementById("sort-filter");
+
   if (saved) {
     document.getElementById("industry-filter").value = saved.industry || "";
     document.getElementById("country-filter").value = saved.country || "";
-    document.getElementById("sort-filter").value = saved.sort || "";
+    sortFilter.value = saved.sort || "name-asc";
     document.getElementById("search-input").value = saved.search || "";
+  } else {
+    // No saved preferences, default to "name-asc"
+    sortFilter.value = "name-asc";
   }
 }
 

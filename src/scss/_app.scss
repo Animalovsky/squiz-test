@@ -6,17 +6,10 @@ body {
 }
 
 .app-wrapper {
-  height: 100vh;
-
-  @media (min-width: 991.98px) {
-    padding: 50px 0;
+  .container-fluid {
+    max-width: 1400px;
+    padding-bottom: $padding_medium*2;
   }
-}
 
-[class^="col-"] {
-  transition: all 0.4s ease-out;
-}
-
-[class^="container"] {
-  transition: all 0.4s ease-out;
+  height: 100vh;
 }

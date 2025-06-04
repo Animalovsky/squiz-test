@@ -1,6 +1,6 @@
 button {
   border: unset;
-  padding: 10px;
+  padding: $padding_medium;
   text-transform: uppercase;
   font-weight: 500;
   width: 100%;
@@ -36,6 +36,10 @@ button {
 
 #loadMoreBtn,
 #end-message {
-  margin: 20px 0;
+  margin: $margin_medium 0 $margin_small 0;
   text-align: center;
+
+  @media (max-width: 991.98px) {
+    margin-bottom: 0;
+  }
 }
