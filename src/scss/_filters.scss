@@ -109,6 +109,7 @@
       position: sticky;
       top: 0;
       border-top: 15px solid #f9fafb;
+      z-index: 1;
 
       @media (max-width: 991.98px) {
         top: 170px;
