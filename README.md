@@ -20,7 +20,6 @@ An interactive dashboard created in vanilla JavaScript with the API data served 
 ## 📦 How to Use
 
 1. Clone the repository.
-2. Make sure to use NVM version of 12.16.1
-3. Run "npm install" command inside "Squiz test" directory in the terminal to install required dependencies.
-4. Run "npx gulp" to compile the project on a local server.
-5. If it doesn't open automatically, open "http://localhost:3000/" in the browser to view the project.
+2. Make sure that you have Node installed on your computer.
+3. Run "npx gulp" in squiz-test-main folder to compile the project on a local server.
+4. If it doesn't open automatically, open "http://localhost:3000/" in the browser to view the project.
